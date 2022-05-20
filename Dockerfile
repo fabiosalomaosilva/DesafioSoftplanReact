@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM alpine
 
 # set the working direction
 WORKDIR /app
