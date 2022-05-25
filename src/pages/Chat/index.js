@@ -2,27 +2,35 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { HubConnectionBuilder } from '@microsoft/signalr';
 
-import PostMensage from './PostMensage/index';
 import ListUsers from './ListUsers/index';
 import ListMensages from './ListMensages/index';
-import { useSelector } from 'react-redux';
+import { connect } from 'react-redux';
+import { setUsersLogged } from '../../store/actions';
 
-export default function Chat() {
-  const [connection, setConnection] = useState(null);
-	const [chat, setChat] = useState([]);
-	const [users, setUsers] = useState([]);
-	const latestChat = useRef(null);
-  const user = useSelector((state) => state.user);
+const Chat = ({user, dispatch}) => {
+	const [connection, setConnection] = useState(null);
+	const [messages, setMessages] = useState([]);
+	const latestMesseges = useRef(null);
 
-  latestChat.current = chat;
+	latestMesseges.current = messages;
 
-	const userPing = async () => {		
+	const userPing = async () => {
 		if (connection && connection.state === 'Connected') {
-		try {
+			try {
 				await connection.send('UserRegister', user);
 			} catch (e) {
 				console.log(e);
-			}		
+			}
+		}
+	};
+
+	const sendMessage = async (chatMessage) => {
+		if (connection && connection.state === 'Connected') {
+			try {
+				await connection.send('SendMessage', chatMessage);
+			} catch (e) {
+				console.log(e);
+			}
 		}
 	};
 
@@ -31,6 +39,10 @@ export default function Chat() {
 			userPing();
 		}, 1000);
 	};
+
+	useEffect(() => {
+		observableUsersOnLine();
+	}, []);
 
 	useEffect(() => {
 		const newConnection = new HubConnectionBuilder()
@@ -48,61 +60,50 @@ export default function Chat() {
 				.then((result) => {
 					console.log('Connected!');
 
-					connection.on('ReceiveMessage', (message) => {
-						const updatedChat = [...latestChat.current];
-						updatedChat.push(message);
-
-						setChat(updatedChat);
+					connection.on('ReceiveMessage', (chatMessage) => {
+							const updatedMessages = [...latestMesseges.current];
+							updatedMessages.push(chatMessage);
+							setMessages(updatedMessages);
 					});
 
 					connection.on('notifyAdmin', (data) => {
-            const listString = data.split("||");
-            const userListServer = listString.map(user => {
-              return JSON.parse(user);
-            });
-						setUsers(userListServer);
+						const listString = data.split('||');
+
+						const userListServer = listString.map((u) => {
+							return JSON.parse(u);
+						});
+						const userListForStore = userListServer.filter((u) => {
+							return u.Email !== user.email;
+						});
+						dispatch(setUsersLogged(userListForStore));
 					});
-					
 				})
 				.catch((e) => console.log('Connection failed: ', e));
+
 		}
-			observableUsersOnLine();
+		observableUsersOnLine();
 	}, [connection]);
-
-	const sendMessage = async (user, message) => {
-		const chatMessage = {
-			user: user,
-			message: message,
-		};
-
-		if (connection._connectionStarted) {
-			try {
-				await connection.send('SendMessage', chatMessage);
-			} catch (e) {
-				console.log(e);
-			}
-		} else {
-			alert('Servidor desconectado.');
-		}
-	};
 
 	return (
 		<>
 			<Container style={{ padding: '0px' }}>
 				<Row>
-        <Col md={3}>
-          <ListUsers users={users} />
-        </Col>
-        <Col md={9}>
-          <ListMensages />
-        </Col>
+					<Col md={3}>
+						<ListUsers  />
+					</Col>
+					<Col md={9}>
+					<ListMensages messages={messages} sendMessage={sendMessage} />
+					</Col>
 				</Row>
-        <Row>
-          <Col>
-            <PostMensage />
-          </Col>
-        </Row>
 			</Container>
 		</>
 	);
 }
+
+const mapStateToProps = (state) => ({
+	user: state.user,
+	consumer: state.selectUserChat,
+});
+
+export default connect(mapStateToProps)(Chat);
+

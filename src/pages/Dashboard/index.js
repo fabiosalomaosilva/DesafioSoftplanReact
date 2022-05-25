@@ -33,7 +33,7 @@ export default function Dashboard() {
 				<div className="header-dashboard-item">
 					<NavDropdown
 						title={user?.name}
-						className="header-dashboard-user"
+						className="header-dashboard-user" id="nav-dropdown" 
 						style={{ color: '#fff' }}
 					>
 						<NavDropdown.Item href="/">Sair</NavDropdown.Item>

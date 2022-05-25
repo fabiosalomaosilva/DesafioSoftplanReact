@@ -28,7 +28,6 @@ export const logout = () => {
 	};
 };
 
-
 export const GetAuthState = (user) => {
 	if (user === null) {
 		const userLocalStorage = getLocalStorage('profile');
@@ -58,5 +57,26 @@ export const setSelectedCountry = (country) => {
 	return {
 		type: actionTypes.SET_SELECTED_COUNTRY,
 		payload: country,
+	};
+};
+
+export const setUsersLogged = (users) => {
+	return {
+		type: actionTypes.SET_USERS_LOGGED,
+		payload: users,
+	};
+};
+
+export const setUserChat = (user) => {
+	return {
+		type: actionTypes.SELECT_USER_CHAT,
+		payload: user,
+	};
+};
+
+export const setMessage = (message) => {
+	return {
+		type: actionTypes.SET_MESSAGE,
+		payload: message,
 	};
 };

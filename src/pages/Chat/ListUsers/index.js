@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Alert } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUserChat } from '../../../store/actions';
 
-export default function ListUsers(props) {
+export default function ListUsers() {
 	const user = useSelector((state) => state.user);
-	const [users, setUsers] = useState([]);
+	const users = useSelector((state) => state.usersLogged);
+	const dispatch = useDispatch();
 
-	useState(() => {
-		const userListServer = props.users.filter((u) => {
-			return JSON.parse(u.Email !== user.email);
-		});
-		setUsers(userListServer);
-		console.log(userListServer);
-	}, [props]);
-
+const handleSelectConsumer = (userlist) => {
+	dispatch(setUserChat(userlist));
+}
 	return (
 		<>
 			<div className="box-chat-users">
@@ -31,10 +27,14 @@ export default function ListUsers(props) {
 				</div>
 				<br />
 				{users?.length > 0 &&
-					users?.map((user) => (
-						<div className="box-chat-user">
-							{user?.FirstName} {user?.LastName}
-						</div>
+					users?.map((userlist) => (
+						<span
+						className="box-chat-user" 
+						key={(Math.random() * 99999).toString()} 
+						onClick={() => handleSelectConsumer(userlist)}
+						>
+							{userlist?.FirstName} {userlist?.LastName}
+						</span>
 					))}
 			</div>
 		</>
