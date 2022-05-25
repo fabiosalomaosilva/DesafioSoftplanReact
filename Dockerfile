@@ -1,4 +1,4 @@
-FROM alpine
+FROM node
 
 # set the working direction
 WORKDIR /app
@@ -19,4 +19,4 @@ COPY . ./
 # start app
 CMD ["npm", "start"]
 
-EXPOSE 8080/tcp
+EXPOSE 321456/tcp

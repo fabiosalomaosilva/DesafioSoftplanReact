@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import AppRoutes from './routes';
+import { client } from './config/apolloClient';
+import { ApolloProvider } from '@apollo/client';
+import { getUser } from './store/actions';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const user = useSelector((state) => state.user);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (user == null) {
+			const status = getUser();
+			if (status === false) {
+				navigate('/');
+			}
+		}}, [user]);
+		
+	return (
+		<ApolloProvider client={client}>
+			<AppRoutes />
+		</ApolloProvider>
+	);
 }
 
 export default App;
