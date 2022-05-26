@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Map from './Map';
-import { getInfoContries } from './../../services/countriesService';
+import { getInfoContries, getInfoRegions } from './../../services/countriesService';
 
 export default function CountryDetails() {
 	const { code } = useParams();
@@ -10,10 +10,12 @@ export default function CountryDetails() {
 	const selectCountry = async () => {
 		const cout = await getInfoContries(code);
 		setCountry(cout);
+		await getInfoRegions(code);
 	};
 
 	useEffect(() => {
 		selectCountry();
+		
 	}, []);
 
 	return (
@@ -58,6 +60,7 @@ export default function CountryDetails() {
 					{country && (
 						<Map
 							name={country?.name}
+							code={code}
 							area={country?.area}
 							lat={country?.latlng[0]}
 							lng={country?.latlng[1]}

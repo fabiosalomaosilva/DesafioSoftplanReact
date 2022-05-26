@@ -4,9 +4,7 @@ import { GoogleLogin } from 'react-google-login';
 import { setUser } from './../../store/actions';
 import { setLocalStorage } from '../../utils/localStorage';
 import { useNavigate } from 'react-router-dom';
-import { config } from 'dotenv';
 
-config();
 
 export default function GoogleLoginButton() {
 	const dispatch = useDispatch();
@@ -33,7 +31,7 @@ export default function GoogleLoginButton() {
 	return (
 		<div id="signInButton">
 			<GoogleLogin
-				clientId={process.env.GOOGLE_CLIENT_ID}
+				clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
 				buttonText="Login com Google"
 				onSuccess={onSuccess}
 				onFailure={onFailure}

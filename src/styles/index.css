@@ -418,15 +418,15 @@ a:visited {
 }
 
 #chat-input {
-	width: calc(100% - 25px);
+	width: 100%;
 	min-height: 60px;
 	padding: 5px;
 	padding-left: 30px;
 	color: #4b4b4b;
 	font-size: 0.8rem;
 	margin-top: 10px;
+	border-radius: 30px;
 	border: #c3c3c3 1px solid;
-	border-radius: 20px;
 	align-self: flex-start;
 	font-size: 1.4rem;
 	margin-left: 15px;
@@ -435,9 +435,23 @@ a:visited {
 	outline: none;
 	border: #d5dffd 1px solid;
 	box-shadow: #d6def7 1px 1px 16px 1px;
-
 }
-
 .clear{
 	clear: both;
+}
+.btn-send-message{
+	background-color: #008080;
+	color: #fff;	
+	border: #006d6d 1px solid;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	margin-right: -15px;
+	margin-left: -30px;
+	margin-top: 10px;
+	z-index: -1000999;
+}
+#btn-send-message-icon {
+	color: #fff;
+	font-size: 1.8rem;
 }

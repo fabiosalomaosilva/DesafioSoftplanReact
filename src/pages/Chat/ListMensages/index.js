@@ -31,7 +31,7 @@ const ListMensages = (props) => {
 	return (
 		<>
 			<Container className="p-0">
-				<Row style={{ margin: '0' }}>
+				<Row style={{ marginInline: '-20px' }}>
 					<div className="list-messages-title mt-2 pt-1">
 						{consumer && (
 							<>

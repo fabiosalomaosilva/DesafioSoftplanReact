@@ -4,7 +4,7 @@ import { startGoogle } from './../../config/googleConfig';
 import logo from '../../assets/DesafioSoftplan-512.png';
 
 function Login() {
-
+	
   useEffect(() => {
       startGoogle();
   }, []);

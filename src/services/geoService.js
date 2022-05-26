@@ -7,9 +7,13 @@ export const getAditionalInfoContries = async (country) => {
     params: {q: country, 'accept-language': 'en', polygon_threshold: '0.0'},
     headers: {
       'X-RapidAPI-Host': 'forward-reverse-geocoding.p.rapidapi.com',
-      'X-RapidAPI-Key': '27cfaf5a59msh89d58e5d5dd887bp1f3070jsn83db1d3d4bb7'
+      'X-RapidAPI-Key': process.env.REACT_APP_RAPIDD_API_KEY
     }
   };
   const latLong = await axios.request(options);
   return latLong.data[0];
+}
+
+export const getFiveCountriesDIstance = async (country) => {
+  
 }
