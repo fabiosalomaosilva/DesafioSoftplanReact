@@ -46,7 +46,7 @@ const Chat = ({user, dispatch}) => {
 
 	useEffect(() => {
 		const newConnection = new HubConnectionBuilder()
-			.withUrl('https://localhost:5001/hubs/chat')
+			.withUrl('https://desafiosoftplanapinetcore.azurewebsites.net/hubs/chat')
 			.withAutomaticReconnect()
 			.build();
 

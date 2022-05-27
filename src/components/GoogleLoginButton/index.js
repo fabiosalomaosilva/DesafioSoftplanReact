@@ -21,7 +21,7 @@ export default function GoogleLoginButton() {
 		setLocalStorage("token", response.tokenObj.access_token);
 		dispatch(setUser(user));
 		setLocalStorage("profile", user);
-		navigate('../dashboard', { replace: true });
+		navigate('/dashboard', { replace: true });
 	}
 
 	function onFailure(response) {

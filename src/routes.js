@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard/index';
 import CountryDetails from './pages/CountryDetails/index';
 import Countries from './pages/Countries/index';
 import Chat from './pages/Chat/index';
+import EditCountry from './pages/EditCountry/index';
 
 const AppRoutes = () => (
 	<Routes>
@@ -13,6 +14,7 @@ const AppRoutes = () => (
 		<Route path="/dashboard" element={<Dashboard />}>
 			<Route path="countries" element={<Countries />} />
 			<Route path="chat" element={<Chat />} />
+			<Route path="editcountry" element={<EditCountry />} />
 			<Route path="details/:code" element={<CountryDetails />} />
 		</Route>
 	</Routes>

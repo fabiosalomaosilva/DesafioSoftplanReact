@@ -21,7 +21,7 @@ const ListMensages = (props) => {
 	};
 
 	const scrollToBottom = () => {
-		messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+		messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
 	};
 
 	useEffect(() => {
@@ -53,9 +53,9 @@ const ListMensages = (props) => {
 						{
 							<Col>
 								<div>{chat}</div>
-								<div ref={messagesEndRef} />
 							</Col>
 						}
+						<div ref={messagesEndRef} />
 					</div>
 				</Row>
 				<Row>
