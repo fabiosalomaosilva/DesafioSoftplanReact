@@ -30,3 +30,17 @@ http://desafiosoftplan.salomaovogth.com.br
 - API possui endpoint via HTTP GET que retorna os links de repositórios:
 
 https://desafiosoftplanapinetcore.azurewebsites.net/api/v1/RepositoriosGit
+
+
+Para utilização em outras implantações, as variáveis de ambiente deverão ser preenchidas após a criação de arquivo .env na raiz do projeto.
+
+- Criar arquivo .env na raiz do projeto:
+  
+     $touch .env
+     
+- Preencher com as seguintes variáveis de ambiente
+
+      REACT_APP_GOOGLE_CLIENT_ID=
+      REACT_APP_RAPIDD_API_KEY=
+      REACT_APP_RAPIDD_API_USERNAME=tester@teste.com
+      REACT_APP_RAPIDD_API_PASSWORD=teste123
