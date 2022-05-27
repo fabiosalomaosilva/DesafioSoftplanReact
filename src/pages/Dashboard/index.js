@@ -5,6 +5,7 @@ import MenuBar from './../../components/MenuBar/index';
 import { Outlet, useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { GetAuthState, setUser } from './../../store/actions';
+import {FaUserMd, FaCoffee} from 'react-icons/fa';
 
 export default function Dashboard() {
 	const user = useSelector((state) => state.user);
@@ -21,6 +22,11 @@ export default function Dashboard() {
 		}
 	}, [navigate, user]);
 
+	const navigateProfile = (e) => {
+		e.preventDefault();
+		navigate('/dashboard/profile');
+	}
+
 	return (
 		<>
 			<div className="header-dashboard">
@@ -36,6 +42,8 @@ export default function Dashboard() {
 						className="header-dashboard-user" id="nav-dropdown" 
 						style={{ color: '#fff' }}
 					>
+						<NavDropdown.Item onClick={navigateProfile}>Perfil</NavDropdown.Item>
+					<hr style={{margin: '0px'}} />
 						<NavDropdown.Item href="/">Sair</NavDropdown.Item>
 					</NavDropdown>
 					<img

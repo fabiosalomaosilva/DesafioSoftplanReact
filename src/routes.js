@@ -6,6 +6,7 @@ import CountryDetails from './pages/CountryDetails/index';
 import Countries from './pages/Countries/index';
 import Chat from './pages/Chat/index';
 import EditCountry from './pages/EditCountry/index';
+import Profile from './pages/Profile/index';
 
 const AppRoutes = () => (
 	<Routes>
@@ -15,6 +16,7 @@ const AppRoutes = () => (
 			<Route path="countries" element={<Countries />} />
 			<Route path="chat" element={<Chat />} />
 			<Route path="editcountry" element={<EditCountry />} />
+			<Route path="profile" element={<Profile />} />
 			<Route path="details/:code" element={<CountryDetails />} />
 		</Route>
 	</Routes>

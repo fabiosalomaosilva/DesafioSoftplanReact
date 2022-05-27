@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { FaMapMarked } from 'react-icons/fa';
-import { Container, Row, Form, Col, Button } from 'react-bootstrap';
+import { Container, Row, Form, Col } from 'react-bootstrap';
 import {
 	getAditionalInfoContries,
 	addAditionalInfoContries,
 } from '../../services/apiCustomCountryService';
 
 export default function EditCountry() {
-	const [validated, setValidated] = useState(false);
 	const [countries, setCountries] = useState();
 	const [name, setName] = useState();
 	const [area, setArea] = useState();
