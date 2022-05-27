@@ -36,7 +36,7 @@ Para utilização em outras implantações, as variáveis de ambiente deverão s
 
 - Criar arquivo .env na raiz do projeto:
   
-     $touch .env
+      $touch .env
      
 - Preencher com as seguintes variáveis de ambiente
 
