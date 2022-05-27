@@ -16,3 +16,17 @@ A página de detalhes possui Mapa do país e ponto fixo indicando a latitude e l
 
 Foi implantado chat em tempo real com as pessoas que estão na aplicação. A conversas são individuais. Não foi implementado Chat em grupo.
 
+# Endereços dos serviços publicados
+
+- Projeto publicado em Azure Web App com o seguinte endereço (acessível por clientes Rest):
+ 
+https://desafiosoftplanapinetcore.azurewebsites.net
+ 
+ 
+- O cliente Frontend (com o chat em funcionamento) está disponível em:
+ 
+http://desafiosoftplan.salomaovogth.com.br
+
+- API possui endpoint via HTTP GET que retorna os links de repositórios:
+
+https://desafiosoftplanapinetcore.azurewebsites.net/api/v1/RepositoriosGit
