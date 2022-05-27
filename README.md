@@ -16,6 +16,8 @@ A página de detalhes possui Mapa do país e ponto fixo indicando a latitude e l
 
 Foi implantado chat em tempo real com as pessoas que estão na aplicação. A conversas são individuais. Não foi implementado Chat em grupo.
 
+Foi implementada a autenticação OAuth 2 Google
+
 # Endereços dos serviços publicados
 
 - Projeto publicado em Azure Web App com o seguinte endereço (acessível por clientes Rest):
